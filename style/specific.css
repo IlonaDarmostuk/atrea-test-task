@@ -1,0 +1,50 @@
+
+button.okBtn {
+	background-color: #40a4e0;
+	border: 1px solid #D1D1D1;
+	color: #ffffff
+}
+
+.row-break {
+	margin-top: 20px
+}
+
+.row-break span:not([class]){
+	font-weight: 600;
+	margin-left: 20px;
+	margin-right: 20px;
+}
+.row-break .v-date-time-picker{
+	display: inline;
+}
+.break-settings {
+	height: auto;
+}
+.scrollable {
+	height: 700px;
+	overflow: auto;
+}
+@media only screen and (max-height: 700px) {
+	.scrollable {
+		height: 370px;
+	}
+}
+.overflow-unset {
+	overflow-y: visible;
+}
+
+.calculation-row{
+	width: 80%;
+	cursor: default;
+	border-bottom: 1px solid #d4dae3
+}
+.calculation-row span {
+	display: inline-block;
+}
+.calculation-row i {
+	color: #a0a3a9;
+	margin-right: 5px;
+}
+.overflow-unset {
+	overflow-y: visible;
+}

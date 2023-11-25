@@ -1,0 +1,568 @@
+/*******************************************************************
+General
+*******************************************************************/
+
+@font-face {
+  font-family: 'Circular';
+  src: url('~assets/fonts/circular-bold.woff2') format('woff2'), url('~assets/fonts/circular-bold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Circular';
+  src: url('~assets/fonts/circular-medium.woff2') format('woff2'), url('~assets/fonts/circular-medium.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Roboto';
+  src: url('~assets/fonts/roboto-v18-latin-regular.woff2') format('woff2'), url('~assets/fonts/roboto-v18-latin-regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Roboto';
+  src: url('~assets/fonts/roboto-v18-latin-500.woff2') format('woff2'), url('~assets/fonts/roboto-v18-latin-500.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Roboto';
+  src: url('~assets/fonts/roboto-v18-latin-700.woff2') format('woff2'), url('~assets/fonts/roboto-v18-latin-700.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+}
+
+
+html {
+  font-family: 'Roboto', sans-serif;
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  height: 100%;
+  background-color: #EEEEEE;
+  font-size: 14px;
+  font-weight: 400;
+  color: #42526e;
+}
+
+#app {
+  height: 100%;
+}
+
+/*******************************************************************
+Typography
+*******************************************************************/
+.font-bold {
+  font-weight: 500;
+}
+
+.font-red {
+  color: #F53D3D;
+}
+
+.font-secondary {
+  color: #b0b6ba;
+}
+
+.font-link {
+	color: #40A4E0;
+}
+
+.noselect {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.font-secondary {
+  color: #b0b6ba;
+}
+.no-event {
+  pointer-events: none;
+}
+
+/*******************************************************************
+Positioning & alignment
+*******************************************************************/
+.float-right {
+  position: absolute;
+  right: 0;
+}
+
+.float-left {
+  position: absolute;
+  left: 0;
+}
+
+.center-content {
+  text-align: center;
+}
+
+.nowrap {
+  white-space: nowrap;
+}
+
+/* containers */
+.container {
+  width: 100%;
+  height: 100%;
+}
+
+.inline-block {
+  display: inline-block;
+}
+
+.row {
+  text-align: center;
+  overflow: auto;
+}
+
+.h-line {
+  border-bottom: 1px solid #C5C5C5;
+}
+/* *** *** *** */
+
+/* cursors */
+.cursor-pointer {
+  cursor: pointer;
+}
+/* *** *** *** */
+
+/* text input */
+input.text-input {
+  height: 35px;
+  border-radius: 2px;
+  font-size: 14px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  transition: none;
+  border: 1px solid #DFE1EB;
+  background-color: #fafbfc;
+  padding: 3px 12px;
+  color: #505f79;
+  font-size: 14px;
+  line-height: 27px;
+  height: 38px;
+}
+
+input.text-input:disabled {
+  background-color: #e7ecf1;
+}
+
+input.asterisk-placeholder::placeholder {
+  opacity: 1;
+  color: inherit;
+  font-size: 18px;
+  position: relative;
+  top: 3px;
+}
+
+input.asterisk-placeholder::-webkit-input-placeholder {
+  color: inherit;
+  font-size: 18px;
+  position: relative;
+  top: 3px;
+}
+
+input.asterisk-placeholder::-moz-placeholder {
+  opacity: 1;
+  color: inherit;
+  font-size: 18px;
+  position: relative;
+  top: 3px;
+}
+
+input.asterisk-placeholder:-moz-placeholder {
+  opacity: 1;
+  color: inherit;
+  font-size: 18px;
+  position: relative;
+  top: 3px;
+}
+
+input.asterisk-placeholder:-ms-input-placeholder {
+  color: inherit;
+  font-size: 18px;
+  position: relative;
+  top: 3px;
+}
+
+input.asterisk-placeholder::-ms-input-placeholder {
+  color: inherit;
+  font-size: 18px;
+  position: relative;
+  top: 3px;
+}
+/* *** *** *** */
+
+/* radiobox */
+input[type="radio"].radio-button {
+  display: none;
+}
+
+input[type="radio"].radio-button + label.radio-label {
+  cursor: pointer;
+  margin-right: 15px;
+}
+/* *** *** *** */
+
+/* checkbox */
+input[type="checkbox"].checkbox {
+  display: none;
+}
+
+input[type="checkbox"].checkbox + label {
+  cursor: pointer;
+  width: 18px;
+  height: 18px;
+  top: 1px;
+  background-color: #fff;
+  border: 1px solid #B8B9BA;
+  border-radius: 9px;
+  color: #fff;
+}
+
+input[type="checkbox"].checkbox.unchecked-default + label {
+  background-color: #e9ecee;
+  border: 1px solid #e9ecee;
+  color: #4D4D4D;
+}
+
+input[type="checkbox"].checkbox.large + label {
+  width: 18px;
+  height: 18px;
+  border-radius: 11px;
+}
+
+input[type="checkbox"].checkbox + label > i.fa {
+  font-size: 11px;
+  top: -2px;
+  left: 3px;
+
+}
+
+input[type="checkbox"].checkbox.large + label > i.fa {
+  font-size: 11px;
+    top: -2px;
+    left: 3px;
+}
+
+input[type="checkbox"].checkbox:checked + label {
+	background-color: #2AB27B;
+  border-color: #2AB27B;
+  color: #fff;
+}
+/* **** *** *** */
+
+/*******************************************************************
+Buttons
+*******************************************************************/
+button.button {
+  height: 36px;
+  border-radius: 3px;
+  padding: 0 17px 0 17px;
+  color: #fff;
+  background-color: #777;
+  border: 1px solid #777;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0s ease, box-shadow .2s ease-in-out;
+  user-select: none;
+  font-family: 'Roboto', sans-serif;
+}
+
+button.button:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+button.button:hover:not(:disabled) {
+  box-shadow: 0 1px 4px rgba(44, 45, 48, 0.3); 
+}
+
+button.button.chip-button {
+  font-size: 12px;
+  min-width: 65px;
+  padding: 1px 15px;
+  font-weight: 400;
+  border: none;
+}
+
+button.button.chip-button,
+button.button.chip-button.sm {
+  margin-right: 4px;
+  height: 26px;
+  border-radius: 16px;
+  box-shadow: none !important;
+}
+
+button.button.chip-button.md {
+  height: 26px;
+  border-radius: 13px;
+}
+
+button.button.chip-button.xs {
+  max-width: 50px;
+  margin: 1px 6px;
+}
+
+button.button.default {
+  background-color: #E6E9ED;
+  border: none;
+  color: #42526e;
+}
+
+button.button.default-flat {
+  background-color: #E6E9ED;
+  color: #45526E;
+  border: 1px solid #E6E9ED;
+}
+
+button.button.primary {
+  background-color: #2ab27b;
+  border: 1px solid #2ab27b;
+}
+
+button.button.secondary {
+  background-color: #4688f1;
+  border: 1px solid #4688f1;
+}
+
+button.button.danger {
+  background-color: #F53D3D;
+  border: 1px solid #F53D3D;
+}
+
+button.button.danger-outline {
+  background-color: #fff;
+  color: #F53D3D;
+  border: 1px solid #F53D3D;
+}
+
+button.button.purple {
+  background-color: #863FDD;
+  border: 1px solid #863FDD;
+}
+
+
+button.text-button {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  font-size: 15px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  color: #40A4E0;
+  white-space: nowrap;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.icon-button {
+  width: 24px;
+  height: 24px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  cursor: pointer;
+}
+
+.icon-button.cross {
+  background-image: url('~assets/img/cross.svg');
+}
+
+/*******************************************************************
+Form control
+*******************************************************************/
+.form-control > *:disabled {
+  cursor: default;
+}
+
+.form-control input:focus {
+  border-color: #5eb7f5;
+}
+
+.form-control i.fa {
+  position: absolute;
+  top: 9px;
+	right: 10px;
+  font-size: 16px;
+  pointer-events: none;
+}
+
+.form-control.success i.fa {
+  color: #2AB27B;
+}
+
+.form-control.error .error-message {
+  font-size: 13px;
+  display: block;
+}
+
+.form-control.error input,
+.form-control.error i.fa,
+.form-control.error .error-message {
+  color: #F53D3D;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.form-control.error input,
+.form-control.error .v-select-button {
+  border-color: #F53D3D;
+}
+
+.form-control.success input,
+.form-control.error input {
+  padding-right: 30px;
+}
+/* *** *** *** */
+
+/* links */
+a:hover {
+  text-decoration: underline;
+}
+/* *** *** *** */
+
+/* page */
+.page-title {
+	font-size: 26px;
+	color: #172b4d;
+  font-weight: 700;
+  user-select: none;
+  font-family: Circular, Helvetica, Arial, sans-serif;
+}
+
+.page-subtitle {
+	font-size: 26px;
+	color: #72839b;
+  font-weight: 700;
+  margin-left: 5px;
+  user-select: none;
+  font-family: Circular, Helvetica, Arial, sans-serif;
+}
+
+.page-header {
+  height: 35px;
+  display: flex;
+  align-items: center;
+}
+
+.page-body {
+	width: 100%;
+	height: calc(100% - 35px);
+	display: flex;
+	padding-bottom: 35px;
+}
+
+.page-content {
+  flex: 1;
+  padding-left: 20px;
+}
+
+.page-menu {
+  margin-top: 44px;
+  width: 200px;
+  height: 100%;
+  overflow-y: auto;
+}
+/* *** *** *** */
+
+/* check-list */
+.check-list {
+	height: 100%;
+}
+
+.check-list-header {
+	padding: 12px 0 6px 0;
+}
+
+.check-list-body {
+	height: calc(100% - 53px);
+  overflow-y: auto;
+  overflow-x: hidden; 
+}
+
+.check-group {
+	display: flex;
+	height: 35px;
+}
+
+.check-label {
+	margin-left: 12px;
+}
+/* *** *** *** */
+
+/* form-table */
+table.form-table {
+  border-spacing: 0;
+  margin-bottom: 20px;
+}
+
+table.form-table td {
+  border-bottom: 1px solid #d4dae3;
+  padding: 3px 10px;
+  white-space: nowrap;
+}
+/* *** *** *** */
+
+/* manualperiod page */
+.error-message-width {
+  width: 220px;
+}
+/* *** *** *** */
+
+/* recalculations page */
+.datepicker-width {
+  width: 110px;
+}
+/* *** *** *** */
+
+/* terminals page */
+.number-width {
+  width: 30% !important;
+}
+.select-width {
+  width: 40% !important;
+}
+/* *** *** *** */
+
+/* day schedules page */
+.add-block {
+  margin-left: 40px;
+}
+.separator-line{
+	margin-left: 15px;
+  margin-right: 15px;
+  font-weight: 600;
+}
+
+.day-schedule-overview-table table{
+  border-spacing: 0;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.day-schedule-overview-table table tr.with-border td {
+  padding:0;
+  margin: 0;
+  border-left: 2px solid #eee;
+  border-right: 2px solid #eee;
+}
+
+/* *** *** *** */
