@@ -126,7 +126,4 @@ export default {
 .checkboxes-block div {
 	padding: 5px 0px;
 }
-.overflow-unset {
-	overflow-y: visible;
-}
 </style>

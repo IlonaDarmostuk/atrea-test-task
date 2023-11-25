@@ -49,7 +49,7 @@
 
 <script>
 /* global valueEquals */
-import './store'
+import '@/store/store'
 import store from '@/store'
 import SysBase from '../../SysBase'
 import SysMixin from '../../SysMixin'
@@ -309,19 +309,21 @@ export default {
 			}, 450) // TEMP SOLUTIONS!
 		},
 		deleteEvent () {
-			if (this.$refs.deleteConfirm) {
-				this.$refs.deleteConfirm.show().then(confirmed => {
-					if (confirmed) {
-						this.delete(this.model).then((response) => {
-							if (response.status === 409) {
-								this.$refs.errorDeleteModal.open()
-							} else {
-								this.selectFirst()
-							}
-						})
+			if (!this.$refs.deleteConfirm) {
+				return
+			}
+			this.$refs.deleteConfirm.show().then(confirmed => {
+				if (!confirmed) {
+					return
+				}
+				this.delete(this.model).then((response) => {
+					if (response.status === 409) {
+						this.$refs.errorDeleteModal.open()
+					} else {
+						this.selectFirst()
 					}
 				})
-			}
+			})
 		},
 		cancelEvent () {
 			if (this.creationMode) {

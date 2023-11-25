@@ -29,10 +29,6 @@ button.okBtn {
 		height: 370px;
 	}
 }
-.overflow-unset {
-	overflow-y: visible;
-}
-
 .calculation-row{
 	width: 80%;
 	cursor: default;
@@ -44,7 +40,4 @@ button.okBtn {
 .calculation-row i {
 	color: #a0a3a9;
 	margin-right: 5px;
-}
-.overflow-unset {
-	overflow-y: visible;
 }

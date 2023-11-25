@@ -1,8 +1,8 @@
 <template>
 	<div class="layout">
-		<template v-if="!$auth.isAuthenticated() || $route.name === '404'">
+		<template v-if="isUnauthorizedView">
 			<div id="header">
-				<the-header-unauth></the-header-unauth>
+				<layout-header-unauth></layout-header-unauth>
 			</div>
 			<router-view />
 		</template>
@@ -10,10 +10,10 @@
 			<input class="q" type="checkbox" id="menu-toggle" />
 			<label for="menu-toggle"></label>
 			<div id="header">
-				<the-header></the-header>
+				<layout-header></layout-header>
 			</div>
 			<div id="menu-wrapper">
-				<the-menu></the-menu>
+				<menu></menu>
 			</div>
 			<div id="content-layout">
 				<div id="maintenance-header" v-if="initialized && hasMaintenanceRights" style="height:35px">
@@ -29,9 +29,9 @@
 </template>
 
 <script>
-import TheMenu from './components/TheMenu'
-import TheHeader from './components/TheHeader'
-import TheHeaderUnauth from './components/TheHeaderUnauth'
+import Menu from './components/Menu'
+import LayoutHeader from './components/LayoutHeader'
+import LayoutHeaderUnauth from './components/LayoutHeaderUnauth'
 import { mapGetters } from 'vuex'
 
 export default {
@@ -39,15 +39,18 @@ export default {
 		initialized: Boolean
 	},
 	components: {
-		TheHeader,
-		TheMenu,
-		TheHeaderUnauth
+		LayoutHeader,
+		Menu,
+		LayoutHeaderUnauth
 	},
 	computed: {
 		...mapGetters('app', [
 			'labelTranslation',
 			'hasMaintenanceRights'
-		])
+		]),
+		isUnauthorizedView() {
+			return !this.$auth.isAuthenticated() || this.$route.name === '404';
+		}
 	}
 }
 </script>

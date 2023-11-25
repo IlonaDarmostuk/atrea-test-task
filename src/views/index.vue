@@ -21,7 +21,7 @@
 
 <script>
 import './store'
-import routes from './routes'
+import routes from '../routes'
 import { mapGetters, mapActions } from 'vuex'
 
 export default {

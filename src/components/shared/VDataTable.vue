@@ -4,13 +4,13 @@
 			<table>
 				<thead ref="thead" :style="{ 'background-color': tableStyles.header.backgroundColor }">
 					<tr :style="`width: calc(100% - ${scrollbarWidth}px)`">
-		<th v-for="column in tableColumns" :key="column.key" @click="sortBy(column)"
-			:style="{ width: column.width }">
-			<slot :name="`column::${column.key}`" :column="column.key">{{ column.key }}</slot>
-			<i v-if="sortColumn.key === column.key" class="fa font-bold" aria-hidden="true"
-				:class="{ 'fa-angle-up': sortOrder === 1, 'fa-angle-down': sortOrder === -1 }">
-			</i>
-		</th>
+						<th v-for="column in tableColumns" :key="column.key" @click="sortBy(column)"
+							:style="{ width: column.width }">
+							<slot :name="`column::${column.key}`" :column="column.key">{{ column.key }}</slot>
+							<i v-if="sortColumn.key === column.key" class="fa font-bold" aria-hidden="true"
+								:class="{ 'fa-angle-up': sortOrder === 1, 'fa-angle-down': sortOrder === -1 }">
+							</i>
+						</th>
 					</tr>
 					<tr class="sub-header">
 						<slot name="subheader"></slot>
@@ -21,14 +21,14 @@
 		<div class="table-body">
 			<table>
 				<recycle-scroller :page-mode="isIE && !isSpecificIE" :style="{'height': tableStyles.table.height }" class="scroller" :class="{'scroller-height': isSpecificIE}" ref="scroller" :items="tableRows" :item-height="tableStyles.row.height" keyField="__uid">
-		<tr slot-scope="{ item, index }" aria-disabled="true" @click="selectRow(item)"
-			:class="{
-				disabled: creationMode,
-				'disabled-item': item.Disabled,
-				selected: creationMode ? item.__type === 'new' : item.__uid === selectedUid,
-				even: index % 2 === 0,
-				blank: item.__type === 'blank'
-			}">
+					<tr slot-scope="{ item, index }" aria-disabled="true" @click="selectRow(item)"
+						:class="{
+							disabled: creationMode,
+							'disabled-item': item.Disabled,
+							selected: creationMode ? item.__type === 'new' : item.__uid === selectedUid,
+							even: index % 2 === 0,
+							blank: item.__type === 'blank'
+						}">
 						<template v-if="item.__type === 'data'">
 							<td v-for="column in tableColumns" :key="column.key"
 								:style="{ width: column.width, height: `${tableStyles.row.height}px` }">
@@ -121,15 +121,15 @@ export default {
 		}
 	},
 	computed: {
-		tableColumns: function () {
+		tableColumns() {
 			return this.columns.map(col => this.getColumnOptions(col))
 		},
-		filterKeys: function () {
+		filterKeys() {
 			return this.tableColumns
 				.filter(col => col.filterByColumn)
 				.map(col => !types.isNull(col.filterKey) ? col.filterKey : col.key)
 		},
-		dataRows: function () {
+		dataRows() {
 			return this.entries.map(entry => {
 				return {
 					...entry,
@@ -138,10 +138,10 @@ export default {
 				}
 			})
 		},
-		filteredDataRows: function () {
+		filteredDataRows() {
 			return search(this.dataRows, this.filter, this.filterKeys)
 		},
-		sortedDataRows: function () {
+		sortedDataRows() {
 			let rows = this.filteredDataRows
 			if (this.sortColumn.key) {
 				const desc = this.sortOrder === -1
@@ -155,7 +155,7 @@ export default {
 			}
 			return rows
 		},
-		blankRows: function () {
+		blankRows() {
 			return range(this.blankRowsCount, (x, i) => {
 				return {
 					__type: 'blank',
@@ -163,12 +163,12 @@ export default {
 				}
 			})
 		},
-		tableRows: function () {
+		tableRows() {
 			return this.sortedDataRows
 				.concat(this.creationMode ? this.newRow : [])
 				.concat(this.blankRows)
 		},
-		tableStyles: function () {
+		tableStyles() {
 			return {
 				header: {
 					...this.defaultStyles.header,
@@ -184,17 +184,17 @@ export default {
 				}
 			}
 		},
-		rowUids: function () {
+		rowUids() {
 			return this.tableRows.map(i => i.__uid)
 		}
 	},
 	watch: {
-		filteredDataRows: function (newVal, oldVal) {
+		filteredDataRows (newVal, oldVal) {
 			if (newVal.length !== oldVal.length) {
 				this.extendTable()
 			}
 		},
-		creationMode: function (newVal) {
+		creationMode (newVal) {
 			this.extendTable()
 			this.$nextTick(() => {
 				this.scrollToItem(newVal ? 'new_row' : this.selectedUid)
@@ -266,21 +266,23 @@ export default {
 				}
 			}
 		},
-		isIE: function () {
+		isIE() {
 			return global.IS_IE
 		},
-		isSpecificIE: function () {
-			if (this.isIE) {
-				const startIndex = navigator.userAgent.indexOf('Windows NT')
-				if (startIndex !== -1) {
-					const lastIndex = navigator.userAgent.search(';')
-					if (lastIndex !== -1) {
-						const winVersion = parseFloat(navigator.userAgent.substring(13, 28).substr(11)) // to get only windows version number
-						return winVersion > 6.1 && winVersion < 10
-					}
-				}
+		isSpecificIE() {
+			if (!this.isIE) {
+				return false
 			}
-			return false
+
+			const startIndex = navigator.userAgent.indexOf('Windows NT')
+			const lastIndex = navigator.userAgent.search(';')
+
+			if (lastIndex === -1 || startIndex === -1) {
+				return false
+			}
+
+			const winVersion = parseFloat(navigator.userAgent.substring(13, 28).substr(11)) // to get only windows version number
+			return winVersion > 6.1 && winVersion < 10
 		}
 	},
 	mounted () {
@@ -289,16 +291,17 @@ export default {
 	beforeUpdate () {
 		if (global.IS_IE) {
 			this.scrollbarWidth = 17
-		} else {
-			const tr = this.$refs.scroller.$el.getElementsByClassName('vue-recycle-scroller__item-wrapper')[0].childNodes[0]
-			if (tr) {
-				if (this.$refs.scroller.$el.offsetWidth - tr.offsetWidth === 0) {
-					this.scrollbarWidth = 17
-				} else {
-					this.scrollbarWidth = this.$refs.scroller.$el.offsetWidth - tr.offsetWidth
-				}
-			}
+			return;
+		} 
+
+		const tr = this.$refs.scroller.$el.getElementsByClassName('vue-recycle-scroller__item-wrapper')[0].childNodes[0]
+		if (!tr) {
+			return 
 		}
+
+		this.scrollbarWidth = this.$refs.scroller.$el.offsetWidth - tr.offsetWidth === 0 
+			? this.scrollbarWidth 
+			: this.$refs.scroller.$el.offsetWidth - tr.offsetWidth
 	}
 }
 </script>
