@@ -21,7 +21,7 @@
 				</v-date-time-picker>
 			</v-form-group>
 		</v-form>
-		<v-block v-for="b in getBreaks()" :key="b.Id" :number="b.Id" :headerButtonCallback="deleteBlock" :headerText="vm.labelTranslation('Break') | capitalize" :headerButtonText="vm.labelTranslation('Delete') | capitalize">
+		<v-block v-for="b in breaks" :key="b.Id" :number="b.Id" :headerButtonCallback="deleteBlock" :headerText="vm.labelTranslation('Break') | capitalize" :headerButtonText="vm.labelTranslation('Delete') | capitalize">
 			<div slot="content" class="content-break">
 				<div class="row-break">
 					<span>{{vm.labelTranslation('Start') | capitalize}}</span>
@@ -105,7 +105,10 @@ export default {
 			set (val) {
 				this.vm.model.LastCalculation = val
 			}
-		}
+		},
+		breaks () {
+			return +this.vm.model.EnumBreakTypeId === 0 ? this.vm.model.SysDayScheduleBreak : this.vm.model.SysDayScheduleRelativeBreak
+		},
 	},
 	methods: {
 		getCorrespondValidation (id) {
@@ -113,9 +116,6 @@ export default {
 		},
 		getRule () {
 			return ((+this.vm.model.EnumBreakTypeId === 0 && this.vm.model.SysDayScheduleBreak.length === 5) || (+this.vm.model.EnumBreakTypeId > 0 && this.vm.model.SysDayScheduleRelativeBreak.length === 5)) ? this.vm.combineRulesFor('LastCalculation', this.relativePath, { required: true }) : {}
-		},
-		getBreaks () {
-			return +this.vm.model.EnumBreakTypeId === 0 ? this.vm.model.SysDayScheduleBreak : this.vm.model.SysDayScheduleRelativeBreak
 		},
 		addBlock () {
 			let body = {

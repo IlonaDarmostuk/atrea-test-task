@@ -498,9 +498,6 @@ export default {
 		height: 440px;
 	}
 }
-.overflow-unset {
-	overflow-y: visible;
-}
 
 .time-line {
 	height: 298px;

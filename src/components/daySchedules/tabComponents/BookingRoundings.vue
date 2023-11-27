@@ -39,21 +39,17 @@
 				<v-date-time-picker
 				v-model="vm.model.SysDayScheduleRounding.ExitBookingRoundTo"
 				name="ExitBookingRoundTo"
-				containerStyle="width: 80px"
-				:isEditMode="vm.isChanged"
-				:onlyTime="true"
+				v-bind="timePickerProps"
 				:errorText="vm.getBookingRoundingsModelErrorText('ExitBookingRoundTo')"
-				:afterClose='vm.checkBookingRoundingsModel'/>
+				/>
 			</v-form-group>
 			<v-form-group :label="vm.labelTranslation('Rounding threshold') | capitalize">
 				<v-date-time-picker
 				v-model="vm.model.SysDayScheduleRounding.ExitBookingUpFrom"
 				name="ExitBookingUpFrom"
-				containerStyle="width: 80px"
-				:isEditMode="vm.isChanged"
-				:onlyTime="true"
+				v-bind="timePickerProps"
 				:errorText="vm.getBookingRoundingsModelErrorText('ExitBookingUpFrom')"
-				:afterClose='vm.checkBookingRoundingsModel'/>
+				/>
 			</v-form-group>
 		</v-form>
 	</div>
@@ -72,7 +68,15 @@ export default {
 	computed: {
 		...mapGetters('admin', {
 			hasLicense: 'hasLicense'
-		})
+		}),
+		timePickerProps() {
+			return {
+				containerStyle: "width: 80px",
+				isEditModel: this.vm.isChanged,
+				onlyTime: true,
+				afterClose: this.vm.checkBookingRoundingsModel,
+			}
+		}
 	},
 	methods: {
 		...mapActions('admin', {
@@ -92,9 +96,3 @@ export default {
 	}
 }
 </script>
-
-<style scoped>
-.overflow-unset {
-	overflow-y: visible;
-}
-</style>

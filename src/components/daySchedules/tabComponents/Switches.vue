@@ -107,7 +107,7 @@ export default {
 	overflow-y: auto;
 	height: 680px;
 }
-.error-class {
+.error {
 	position: absolute;
     width: max-content;
     top: 35px;
@@ -119,8 +119,5 @@ export default {
 	.add-block {
 		margin-top: 0
 	}
-}
-.overflow-unset {
-	overflow-y: visible;
 }
 </style>

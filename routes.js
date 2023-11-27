@@ -3,7 +3,7 @@ import defaultBeforeEnter from '@/router/defaultBeforeEnter'
 let routes = [
 	{
 		path: 'terminal-settings',
-		component: () => import('./terminalSettings'),
+		component: () => import('/components/terminalSettings'),
 		meta: {
 			labelTranslationKey: 'Terminal settings',
 			canBeDefault: 'true',
@@ -12,7 +12,7 @@ let routes = [
 	},
 	{
 		path: 'day-schedules',
-		component: () => import('./daySchedules'),
+		component: () => import('/components/daySchedules'),
 		meta: {
 			labelTranslationKey: 'Day schedules',
 			canBeDefault: 'true',

@@ -102,8 +102,4 @@ export default {
 		margin-top: 0
 	}
 }
-
-.overflow-unset {
-	overflow-y: visible;
-}
 </style>

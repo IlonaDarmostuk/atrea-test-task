@@ -3,7 +3,7 @@
     <div v-if="tasks.length > 0">
       <h2>Tasks</h2>
       <ul>
-        <li v-for="(task, index) in tasks" :key="index">
+        <li v-for="(task, index) in tasks" :key="`${task.name} - ${index}`">
           <span>{{ task.name }}</span>
           <button @click="toggleTaskStatus(task)">{{ task.completed ? 'Undo' : 'Complete' }}</button>
           <button @click="deleteTask(index)">Delete</button>
@@ -12,7 +12,7 @@
     </div>
     <EditTask :task="$root.currentTask" @updateTask="$root.updateTask" />
     <ul>
-      <li v-for="task in tasks">
+      <li v-for="(task, key) in tasks" :key="`${task.name}-${key}`">
         {{ task.name }}
       </li>
     </ul>
@@ -21,7 +21,7 @@
       Loading tasks...
     </div>
     <input v-model="searchQuery" @input="searchTasks">
-    <p v-if="showWelcomeMessage">{{ welcomeMessage }}</p>
+    <p v-if="showWelcomeMessage">Welcome to your Task Manager!</p>
     <TaskList @taskChanged="$root.$emit('updateTaskList')" />
     <SubTaskList :parentTask="selectedTask" />
     <TaskLayout>
@@ -56,7 +56,6 @@ export default {
       loading: true,
       searchQuery: '',
       showWelcomeMessage: true,
-      welcomeMessage: 'Welcome to your Task Manager!',
       shouldRender: true
     };
   },
